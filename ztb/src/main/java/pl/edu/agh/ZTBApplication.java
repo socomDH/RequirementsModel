@@ -7,6 +7,8 @@ import io.dropwizard.setup.Environment;
 import org.skife.jdbi.v2.DBI;
 import pl.edu.agh.dao.AreaDAO;
 import pl.edu.agh.controllers.AreaController;
+import pl.edu.agh.controllers.LightingProfileController;
+import pl.edu.agh.dao.LightingProfileDAO;
 
 public class ZTBApplication extends Application<ZTBApplicationConfiguration> {
 
@@ -27,8 +29,10 @@ public class ZTBApplication extends Application<ZTBApplicationConfiguration> {
     public void run(ZTBApplicationConfiguration config, Environment env) throws ClassNotFoundException {
         final DBIFactory factory = new DBIFactory();
         final DBI jdbi = factory.build(env, config.getDataSourceFactory(), "postgresql");
-        final AreaDAO dao = jdbi.onDemand(AreaDAO.class);
-//        env.jersey().register(new UserResource(dao));
-        env.jersey().register(new AreaController(dao));
+        final AreaDAO areaDAO = jdbi.onDemand(AreaDAO.class);
+        final LightingProfileDAO lightingProfileDAO = jdbi.onDemand(LightingProfileDAO.class);
+        
+        env.jersey().register(new AreaController(areaDAO));
+        env.jersey().register(new LightingProfileController(lightingProfileDAO));
     }
 }
