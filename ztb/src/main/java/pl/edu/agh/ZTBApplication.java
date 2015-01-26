@@ -7,13 +7,10 @@ import io.dropwizard.setup.Environment;
 import org.skife.jdbi.v2.DBI;
 import pl.edu.agh.dao.AreaDAO;
 import pl.edu.agh.controllers.AreaController;
-<<<<<<< HEAD
 import pl.edu.agh.controllers.LightingProfileController;
 import pl.edu.agh.dao.LightingProfileDAO;
-=======
 import pl.edu.agh.controllers.NeighborController;
 import pl.edu.agh.dao.NeighborDAO;
->>>>>>> neighborDAO introduced
 
 public class ZTBApplication extends Application<ZTBApplicationConfiguration> {
 
