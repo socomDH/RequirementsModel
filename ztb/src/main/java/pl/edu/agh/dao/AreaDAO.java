@@ -9,5 +9,5 @@ public interface AreaDAO {
   void createArea(@Bind("name") String name);
   
   @SqlQuery("SELECT id FROM areas where name = :name")
-  long findAreaIdByName(@Bind("name") String name);
+  long findAreaId(@Bind("name") String name);
 }

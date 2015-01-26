@@ -22,7 +22,7 @@ public class AreaController {
     @Path("/create/{name}")
     public IdResponse createArea(@PathParam("name") String name) {
         dao.createArea(name);
-        long id = dao.findAreaIdByName(name);
+        long id = dao.findAreaId(name);
         return new IdResponse(id);
     }
 
