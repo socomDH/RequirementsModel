@@ -38,14 +38,15 @@ public class ZTBApplication extends Application<ZTBApplicationConfiguration> {
         final AreaDAO areaDAO = jdbi.onDemand(AreaDAO.class);
         final LightingProfileDAO lightingProfileDAO = jdbi.onDemand(LightingProfileDAO.class);
         final NeighborDAO neighborDAO = jdbi.onDemand(NeighborDAO.class);
+        final SegmentDAO segmentDAO = jdbi.onDemand(SegmentDAO.class);
         
         env.jersey().register(new AreaController(areaDAO));
         env.jersey().register(new LightingProfileController(lightingProfileDAO));
         env.jersey().register(new NeighborController(neighborDAO));
-        final AreaDAO areaDAO = jdbi.onDemand(AreaDAO.class);
-        final SegmentDAO segmentDAO = jdbi.onDemand(SegmentDAO.class);
-//        env.jersey().register(new UserResource(dao));
-        env.jersey().register(new AreaController(areaDAO));
         env.jersey().register(new SegmentController(segmentDAO));
+        
+//        env.jersey().register(new UserResource(dao));
+
+        
     }
 }
