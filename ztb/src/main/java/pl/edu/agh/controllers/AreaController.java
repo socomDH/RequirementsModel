@@ -21,7 +21,9 @@ public class AreaController {
     @PUT
     @Path("/create/{name}")
     public IdResponse createArea(@PathParam("name") String name) {
-        return new IdResponse(dao.createArea(name));
+        dao.createArea(name);
+        long id = dao.findAreaIdByName(name);
+        return new IdResponse(id);
     }
 
 }
