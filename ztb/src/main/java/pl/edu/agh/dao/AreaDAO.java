@@ -11,6 +11,6 @@ public interface AreaDAO {
 //  @SqlUpdate("insert into something (id, name) values (:id, :name)")
 //  void insert(@Bind("id") int id, @Bind("name") String name);
 
-  @SqlUpdate("insert into areas (name) values (:name)")
+  @SqlUpdate("INSERT INTO areas (name) VALUES (:name)")
   long createArea(@Bind("name") String name);
 }
