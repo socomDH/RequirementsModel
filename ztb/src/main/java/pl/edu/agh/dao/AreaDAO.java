@@ -10,4 +10,7 @@ public interface AreaDAO {
   
   @SqlQuery("SELECT id FROM areas where name = :name")
   long findAreaId(@Bind("name") String name);
+  
+  @SqlUpdate("DELETE FROM areas where id = :id")
+  void deleteArea(@Bind("id") long id);
 }

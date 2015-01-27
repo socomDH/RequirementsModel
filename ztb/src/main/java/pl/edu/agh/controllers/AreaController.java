@@ -1,6 +1,5 @@
 package pl.edu.agh.controllers;
 
-import com.google.common.base.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import javax.ws.rs.*;
@@ -26,4 +25,10 @@ public class AreaController {
         return new IdResponse(id);
     }
 
+    @DELETE
+    @Path("/delete/{id}")
+    public void deleteArea(@PathParam("id") long id) {
+        dao.deleteArea(id);
+    }
+    
 }
