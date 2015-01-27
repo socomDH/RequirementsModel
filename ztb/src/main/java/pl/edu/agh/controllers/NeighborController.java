@@ -19,7 +19,7 @@ public class NeighborController {
     
     @PUT
     @Path("/create/{segment1_id}/{segment2_id}")
-    public IdResponse createArea(@PathParam("segment1_id") long segment1_id,
+    public IdResponse createNeighbor(@PathParam("segment1_id") long segment1_id,
             @PathParam("segment2_id") long segment2_id) {
         dao.createNeighbor(segment1_id, segment2_id);
         long id = dao.findNeighborId(segment1_id, segment2_id);
