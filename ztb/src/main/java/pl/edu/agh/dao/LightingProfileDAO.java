@@ -15,7 +15,7 @@ public interface LightingProfileDAO {
   @SqlUpdate("DELETE FROM lighting_profiles WHERE id = :id")
   void deleteLightingProfile(@Bind("id") long id);
   
-  @SqlUpdate("UPDATE profile SET name = :p.name, value = :p.value WHERE id = :p.id")
+  @SqlUpdate("UPDATE lighting_profiles SET name = :p.name, value = :p.value WHERE id = :p.id")
   void updateLightingProfile(@BindBean("p") LightingProfile profile);
   
   @SqlQuery("SELECT id FROM lighting_profiles WHERE name = :name AND value = :value")

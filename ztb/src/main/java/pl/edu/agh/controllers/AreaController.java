@@ -10,7 +10,9 @@ import pl.edu.agh.model.IdResponse;
 @Path("/area")
 @Produces(MediaType.APPLICATION_JSON)
 public class AreaController {
+    
     private static final Logger LOGGER = LoggerFactory.getLogger(AreaController.class);
+    
     private final AreaDAO dao;
 
     public AreaController(AreaDAO dao) {

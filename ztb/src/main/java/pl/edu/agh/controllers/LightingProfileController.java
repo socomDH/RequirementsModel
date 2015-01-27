@@ -18,6 +18,7 @@ public class LightingProfileController {
     
     private static final Logger LOGGER = 
             LoggerFactory.getLogger(LightingProfileController.class);
+    
     private final LightingProfileDAO dao;
 
     public LightingProfileController(LightingProfileDAO dao) {
