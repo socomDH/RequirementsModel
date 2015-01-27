@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pl.edu.agh.controllers;
 
 import javax.ws.rs.DELETE;
@@ -14,6 +9,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl.edu.agh.dao.NeighborDAO;
 import pl.edu.agh.dao.SegmentDAO;
 import pl.edu.agh.model.IdResponse;
 
@@ -25,39 +21,42 @@ import pl.edu.agh.model.IdResponse;
 @Produces(MediaType.APPLICATION_JSON)
 public class SegmentController {
     private static final Logger LOGGER = LoggerFactory.getLogger(SegmentController.class);
-    private final SegmentDAO dao;
+    private final SegmentDAO segmentDAO;
+    private final NeighborDAO neighborDAO;
     
-    public SegmentController(SegmentDAO dao){
-        this.dao = dao;
+    public SegmentController(SegmentDAO segmentDAO, NeighborDAO neighborDAO){
+        this.segmentDAO = segmentDAO;
+        this.neighborDAO = neighborDAO;
     }
     
     @PUT
     @Path("/create/{areaId}/{locationId}/{lightingProfileId}")
     public IdResponse createSegment(@PathParam("areaId") long areaId, @PathParam("locationId") long locationId,
             @PathParam("lightingProfileId") long lightingProfileId){
-        dao.createSegment(areaId, locationId, lightingProfileId);
-        long id = dao.findSegmentIdByLocationId(locationId);        
+        segmentDAO.createSegment(areaId, locationId, lightingProfileId);
+        long id = segmentDAO.findSegmentIdByLocationId(locationId);        
         return new IdResponse(id);
     }
     
     @GET
     @Path("/get/areaId/{segmentId}")
     public IdResponse getAreaId(@PathParam("segmentId") long segmentId){
-       long id = dao.getAreaId(segmentId);
+       long id = segmentDAO.getAreaId(segmentId);
        return new IdResponse(id);
     }
     
     @GET
     @Path("/get/lightingProfileId/{segmentId}")
     public IdResponse getLightingProfileId(@PathParam("segmentId") long segmentId){
-       long id = dao.getLightingProfileId(segmentId);
+       long id = segmentDAO.getLightingProfileId(segmentId);
        return new IdResponse(id);
     }
     
     @DELETE
     @Path("delete/{segmentId}")
     public void deleteSegment(@PathParam("segmentId") long segmentId) {
-        dao.deleteSegment(segmentId);
+        neighborDAO.deleteNeighbor(segmentId);
+        segmentDAO.deleteSegment(segmentId);
     }
     
 }

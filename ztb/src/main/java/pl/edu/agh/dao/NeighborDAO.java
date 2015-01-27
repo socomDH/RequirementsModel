@@ -10,4 +10,7 @@ public interface NeighborDAO {
     
     @SqlQuery("SELECT id FROM neighbors where segment1_id = :segment1_id and segment2_id = :segment2_id")
     long findNeighborId(@Bind("segment1_id") long segment1_id, @Bind("segment2_id") long segment2_id);
+    
+    @SqlUpdate("DELETE FROM neighbors where segment1_id = :segmentId OR segment2_id = :segmentId")
+    void deleteNeighbor(@Bind("segmentId") long segmentId);
 }

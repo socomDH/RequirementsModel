@@ -43,10 +43,6 @@ public class ZTBApplication extends Application<ZTBApplicationConfiguration> {
         env.jersey().register(new AreaController(areaDAO));
         env.jersey().register(new LightingProfileController(lightingProfileDAO));
         env.jersey().register(new NeighborController(neighborDAO));
-        env.jersey().register(new SegmentController(segmentDAO));
-        
-//        env.jersey().register(new UserResource(dao));
-
-        
+        env.jersey().register(new SegmentController(segmentDAO, neighborDAO));
     }
 }
