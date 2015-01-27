@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.edu.agh.dao.LightingProfileDAO;
 import pl.edu.agh.model.IdResponse;
+import pl.edu.agh.model.LightingProfile;
 
 @Path("/lighting_profile")
 @Produces(MediaType.APPLICATION_JSON)
@@ -39,6 +40,15 @@ public class LightingProfileController {
         long id = dao.findLightingProfileId(name, value);
         dao.deleteLightingProfile(id);
         return new IdResponse(id);
+    }
+    
+    @PUT
+    @Path("/update/{id}/{name}/{value}")
+    public IdResponse updateLightingProfile(@PathParam("id") long id, 
+            @PathParam("name") String name, @PathParam("value") double value) {
+         LightingProfile profile = new LightingProfile(id, name, value);
+         dao.updateLightingProfile(profile);
+         return new IdResponse(profile.getId());
     }
     
 }
